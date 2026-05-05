@@ -97,7 +97,7 @@ Both anima and persona enter at **Layer 13** (same proximity). Explicit social f
 | **A**greeableness | **65** | Cooperative but not deferential (2511.13979) |
 | **N**euroticism | **30** | Low reactivity = resilient task switching |
 
-> **Empirically verified:** Generalist outperforms mismatched specialist by **40–50%** on naturalness and reasoning fit. 6-task, 3-pair kanban experiment. See `references/generalist-experiment-results.md`.
+> **Empirically verified (n=6, 직접 실험):** Generalist outperforms mismatched specialist by **40–50%** on naturalness and reasoning fit. 6-task, 3-pair kanban experiment. See `references/generalist-experiment-results.md`.
 
 ### Domain Profiles
 
