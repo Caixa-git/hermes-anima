@@ -41,7 +41,7 @@
 ### What remains
 
 - [ ] `.github/` directory (issue/PR templates)
-- [ ] `SOUL.md` — standalone identity document (see `hermes-rebirth` bootstrap for reference)
+- [ ] `SOUL.md` — standalone identity document
 
 ---
 
@@ -222,7 +222,6 @@ hermes-anima/
 | Project | Description |
 |:--------|:------------|
 | [hermes-persona](https://github.com/Caixa-git/hermes-persona) | 🎭 Expert role adoption — 172 specialists. Pair with anima for complete architecture. |
-| [hermes-rebirth](https://github.com/Caixa-git/hermes-rebirth) | 💾 Hermes Agent bootstrap — disaster recovery + config + MemPalace backup |
 | [hermes-agent](https://github.com/nousresearch/hermes-agent) | 🤖 The LLM agent framework that hosts both anima and persona |
 
 ---
