@@ -51,6 +51,11 @@ Layer 13: Tool results               ← Persona injected here ("🏗️ Role...
 Both anima and persona enter at **Layer 13** (same proximity). Explicit social
 framing ("Your nature > your role") is what enforces priority — not layer position.
 
+**Layer 3 uncertainty:** Geng et al. (AAAI 2026) warns that layer position alone
+is unreliable. KANBAN_GUIDANCE at Layer 3 works empirically (100%, 10/10 on
+DeepSeek V4 Flash), but other models may require **Layer 13 duplication** of the
+social framing rule as a belt-and-suspenders measure.
+
 **Anima is always-on.** A worker always has a core nature — either domain-specific or the Generalist fallback (O:70 C:75 E:50 A:65 N:30).
 
 ## Research Foundation
@@ -101,6 +106,8 @@ Each worker:
 3. **If no domain matches (confidence <30%)**: fetches the **Generalist** anima profile (O:70 C:75 E:50 A:65 N:30) — a neutral identity designed for cognitive flexibility
 4. Internalizes the identity statement as its CORE NATURE
 5. Announces adoption via `kanban_heartbeat(note="🧠 Anima: System Thinker")`
+   - **On fallback** (agency-agents unavailable/parse failure): `kanban_heartbeat(note="⚠️ Generalist fallback: agency-agents unavailable")`
+   - This is the ONLY way to detect external dependency failures — the system silently defaults to Generalist otherwise.
 6. Works in alignment with its nature
 7. When nature and role conflict, **nature prevails**
 
