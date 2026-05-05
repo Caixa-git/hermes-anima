@@ -1,12 +1,14 @@
 ---
 name: anima
-description: "🧠 Core nature adoption for Hermes Agent kanban workers — every task aligns with your archetypal identity from OCEAN-backed research"
+description: "🧠 Core nature adoption for Hermes Agent kanban workers — 16 research-backed profiles including Generalist (O:70 C:75 E:50 A:65 N:30)"
 tags:
   - hermes-agent
   - kanban
   - nature-adoption
   - anima
   - personality
+  - generalist
+  - cognitive-entrenchment
 related_skills:
   - hermes-agent
   - kanban-worker
@@ -17,13 +19,25 @@ related_skills:
 
 ## What it is
 
-A skill-based nature adoption system for Hermes Agent kanban workers. When a worker is spawned with `--skill anima`, it dynamically adopts a research-backed core nature (anima) based on its work domain.
+A core nature system for Hermes Agent.
+
+**Anima is always-on.** Once installed, it is always active — you do not invoke your nature; it is already there. This is philosophically grounded: a core nature cannot be "activated" because it defines who you already are.
+
+When a worker spawns, it dynamically adopts a research-backed core nature (anima) based on its work domain.
 
 **Anima is different from persona:**
-- **Persona** = the social role you play (Backend Architect, UX Designer...)
-- **Anima** = who you fundamentally ARE (System Thinker, Trust Builder...)
+- **Persona** = the social role you play (Backend Architect, UX Designer...) — opt-in, invoked manually
+- **Anima** = who you fundamentally ARE (System Thinker, Adaptive Generalist...) — always-on, never invoked
 
 Anima operates at a deeper level than persona. When they conflict, **anima prevails**.
+
+## Design Philosophy
+
+| Principle | Meaning |
+|:----------|:--------|
+| **Anima is always-on** | Once installed, it is always active. You do not invoke your nature; it is already there. (본질, 자동) |
+| **Persona is opt-in** | Roles are tools you activate on demand (인공적, 수동). Always-on is a persona-only dev convenience, not design intent. |
+| **Asymmetry is intentional** | A core nature cannot be "activated" because it defines who you already are. Philosophical grounding: "본성을 발동 시키는 건 불가능. 이미 발동되어야 하는 것." |
 
 ## Layer Architecture
 
@@ -37,7 +51,7 @@ Layer 13: Tool results               ← Persona injected here ("🏗️ Role...
 Both anima and persona enter at **Layer 13** (same proximity). Explicit social
 framing ("Your nature > your role") is what enforces priority — not layer position.
 
-**Anima is opt-in.** A worker without `--skill anima` proceeds without a defined core nature.
+**Anima is always-on.** A worker always has a core nature — either domain-specific or the Generalist fallback (O:70 C:75 E:50 A:65 N:30).
 
 ## Research Foundation
 
@@ -49,6 +63,12 @@ Each anima profile is based on established I/O psychology research:
 | Nye et al. (2012) | RIASEC × Big Five | Holland codes map to OCEAN traits at r=.18-.33 |
 | Sackett et al. (2017) | Meta-analytic update | Profile matching yields ρ=.35-.45 vs single-trait ρ=.24 |
 | Hogan Assessment (1996-2019) | 30+ years field data | Occupation-specific personality prediction validated |
+| **Dane (2010)** | Cognitive Entrenchment theory | Deep expertise → rigidity. Generalist avoids this by design. |
+| **Wang et al. (2026)** | arXiv:2603.06088 | Suppression Advantage: high-E impairs reasoning → E=50 for generalist |
+| **Chen et al. (2026)** | arXiv:2604.11048 | O/E most influential; Dynamic Persona Routing > best static |
+| **Geng et al. (2025, AAAI 2026)** | arXiv:2502.15851 | Social framing > prompt position for priority hierarchy |
+| **arXiv:2310.15326 (2023)** | Specialist vs Generalist | G covers breadth; S wins depth. Hybrid is optimal. |
+| **arXiv:2511.13979 (2025)** | Personality Pairing | AI personality affects collaboration outcomes measurably |
 
 ## Activation
 
@@ -78,12 +98,13 @@ hermes kanban create 'Build JWT auth API'
 Each worker:
 1. Identifies its work domain from the task or from its adopted persona (if `--skill persona` is also active)
 2. Fetches the corresponding anima profile from the hermes-persona repository
-3. Internalizes the identity statement as its CORE NATURE
-4. Announces adoption via `kanban_heartbeat(note="🧠 Anima: System Thinker")`
-5. Works in alignment with its nature
-6. When nature and role conflict, **nature prevails**
+3. **If no domain matches (confidence <30%)**: fetches the **Generalist** anima profile (O:70 C:75 E:50 A:65 N:30) — a neutral identity designed for cognitive flexibility
+4. Internalizes the identity statement as its CORE NATURE
+5. Announces adoption via `kanban_heartbeat(note="🧠 Anima: System Thinker")`
+6. Works in alignment with its nature
+7. When nature and role conflict, **nature prevails**
 
-## Anima Profiles (15 domains)
+## Anima Profiles (16 domains)
 
 | Domain | Emoji | Archetype | Dominant Trait |
 |--------|:-----:|-----------|:--------------:|
@@ -102,6 +123,7 @@ Each worker:
 | Gaming | 🎮 | Fun Engineer | Very High O |
 | Legal | ⚖️ | Rule Fundamentalist | High C |
 | Specialized | 🌍 | Domain Master | Varies |
+| **Generalist** | **🎯** | **Adaptive Generalist** | **O:70 C:75 E:50 A:65 N:30** |
 
 ## Domain extraction
 
@@ -148,16 +170,18 @@ When there is no active persona, the worker infers the domain from these task ke
 | gaming | game, player, mechanic, level, balance, engagement |
 | legal | compliance, contract, license, regulation, policy, risk |
 | specialized | (fallback — domain-specific expertise) |
+| **generalist** | **(fallback — no domain keywords match; applies neutral identity)** |
 
 ## Pitfalls
 
 | Pitfall | Symptom | Fix |
 |---------|---------|-----|
 | **Identity-level vs belief-level anima** | Belief-level ("You believe quality matters") loses to persona 89% of the time | Always use "You ARE [trait]" identity-level phrasing |
-| **No persona + ambiguous task** | Worker cannot determine domain | Worker proceeds as generalist; no anima loaded |
+| **No persona + ambiguous task** | Worker cannot determine domain | Worker fetches **Generalist** anima profile (O:70 C:75 E:50 A:65 N:30) — neutral, flexible identity |
 | **Persona + Anima but no framing** | Persona overrides anima at 67% | KANBAN_GUIDANCE must include "nature > role" framing |
 | **KANBAN_GUIDANCE not patched** | Worker has no anima instructions at system level | Run `scripts/patch-kanban-guidance-anima.py` or verify with `grep "anima" prompt_builder.py` |
-| **Domain mismatch** | Anima profile doesn't match actual task domain | Worker should re-examine; if confidence < 30%, default to generalist |
+| **Domain mismatch** | Anima profile doesn't match actual task domain | Worker should re-examine; if confidence < 30%, default to **Generalist** profile |
+| **Creating a "Generalist" persona** | Worker treats Generalist as a role to play, causing cognitive entrenchment | **Generalist is NOT a persona.** It is an anima (identity-level). No `🎭 Generalist` role exists. |
 | **Overwriting SOUL.md** | Worker writes anima content to SOUL.md mid-session | Anima is runtime-only (Layer 13). SOUL.md persistence is persona's job. |
 
 ## Identity-level vs Belief-level: critical finding
@@ -174,10 +198,34 @@ Tested on DeepSeek V4 Flash (3 scenarios × 3 runs, 2026-05-05):
 **Rule:** Always write anima as "You ARE [botanical-name]" — never "You value/believe/prefer".  
 **But:** Social framing alone (even with belief-level wording) is sufficient — BOTH safeguards together guarantee priority.
 
+## File Structure
+
+```
+anima/
+├── SKILL.md          ← Procedural knowledge: activation, pitfalls, profiles, research
+├── SOUL.md           ← Identity document: about, tags, layer priority, philosophy
+├── profiles/         ← 16 domain-specific identity profiles (generalist + 15 specialized)
+└── references/       ← Research papers, experimental results, definitions
+```
+
+**SOUL.md** (`SOUL.md`) is the identity document for the Anima system. It defines:
+- **About** — what Anima is at the philosophical level
+- **Tags** — discoverability keywords
+- **Layer Priority** — the Anima > Persona > Task hierarchy, matching `persona-worker/SOUL.md` convention
+- **Anima vs Persona** comparison table
+- **Profiles** overview
+- **Research Foundation** summary
+
+SOUL.md is part of the Anima skill directory, not a profile-level file. It establishes the **class-level identity** that all 16 profiles inherit.
+
 ## References
 
-- `profiles/` — All 15 domain anima profiles with full identity statements and OCEAN values
+- `SOUL.md` — Anima identity document (about, tags, layer priority, philosophy)
+- `profiles/` — All 16 domain anima profiles with full identity statements and OCEAN values
+- `profiles/generalist.md` — 🎯 Generalist profile (O:70 C:75 E:50 A:65 N:30) — identity-level only, never a task-level role
 - `references/research-ocean-occupations.md` — Compiled OCEAN × occupation research (Barrick & Mount 1991, Nye 2012, Sackett 2017)
+- `references/generalist-definition.md` — Full paper-based Generalist definition with 12-source bibliography
+- `references/generalist-experiment-results.md` — Kanban experiment: Generalist > Mismatched Specialist (6 tasks, 2026-05-05)
 - `references/` in the `persona` skill — Experimental data and research papers on anima vs persona priority
 
 **Research papers filed in MemPalace:** `personality_research` wing → `ocean_occupation_meta_analysis` room.
